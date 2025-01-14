@@ -10,10 +10,19 @@
                 <div class="right"></div>
             </div>
             <li *ngFor="let item of navItems" class="nav-item" [ngClass]="{ 'active': item.active }" (click)="onTabClick(item, $event)">
-                <a class="nav-link" [routerLink]="item.link"> <!-- Use routerLink for navigation -->
-                    <i [class]="item.icon"></i>{{ item.label }}
-                </a>
+                @if(item.isShowMenu) {
+                    <a class="nav-link" [routerLink]="item.link"> <!-- Use routerLink for navigation -->
+                        <i [class]="item.icon"></i>{{ item.label }}
+                    </a>
+                }
             </li>
+            @if(isUserLoggedIn) {
+                <li class="nav-item ">
+                    <a class="nav-link text-warning"> <!-- Use routerLink for navigation -->
+                        Welcome, {{loggedUserName}}
+                    </a>
+                </li>
+            }
         </ul>
     </div>
 </nav>
