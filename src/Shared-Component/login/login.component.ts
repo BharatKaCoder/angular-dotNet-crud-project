@@ -25,6 +25,8 @@ export class LoginComponent {
     password: new FormControl("")
   });
 
+  registrationValue : IUserRegistration [] =[];
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private _router: Router,
@@ -66,10 +68,18 @@ export class LoginComponent {
   }
 
   onRegister() {
-    const registrationValue: IUserRegistration = this.registrationForm.value;
-    if(registrationValue.role === "") {
-      registrationValue['role'] = "Customer"
+    if(this.registrationForm.value.role === "") {
+      this.registrationForm.value['role'] = "customer";
     }
-    localStorage.setItem('localRegistration', JSON.stringify(registrationValue))
+    const isDuplicate = (this.registrationValue.length>0)? this.registrationValue.find(x=>x.userName !== this.registrationForm.value.userName) : this.registrationValue.push(this.registrationForm.value);
+
+    const localStrValue: string | null = localStorage.getItem('localRegistration');
+    let parsedValue: IUserRegistration[] = [];
+  
+    if (localStrValue) {
+      parsedValue = JSON.parse(localStrValue);
+    }
+    parsedValue.push(...this.registrationValue);
+    localStorage.setItem('localRegistration', JSON.stringify(parsedValue));
   }
 }

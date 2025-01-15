@@ -13,4 +13,10 @@ export interface IUserLogin  {
 export interface UserSharedData {
     userName: string;
     isValidedUser: boolean;
-  }
+}
+
+export interface tableData {
+    userName:string
+    email: string
+    role: string
+}
