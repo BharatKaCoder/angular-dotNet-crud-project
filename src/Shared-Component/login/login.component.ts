@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IUserLogin, IUserRegistration, UserSharedData } from '../../Constant/userInfo';
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../../Services/common-service.service';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginComponent {
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private _router: Router,
-    private _commonService: CommonServiceService
+    private _commonService: CommonServiceService,
+    private _httpService: HttpService
   ) {}
 
   ngOnInit(): void {
@@ -71,15 +73,8 @@ export class LoginComponent {
     if(this.registrationForm.value.role === "") {
       this.registrationForm.value['role'] = "customer";
     }
-    const isDuplicate = (this.registrationValue.length>0)? this.registrationValue.find(x=>x.userName !== this.registrationForm.value.userName) : this.registrationValue.push(this.registrationForm.value);
-
-    const localStrValue: string | null = localStorage.getItem('localRegistration');
-    let parsedValue: IUserRegistration[] = [];
-  
-    if (localStrValue) {
-      parsedValue = JSON.parse(localStrValue);
-    }
-    parsedValue.push(...this.registrationValue);
-    localStorage.setItem('localRegistration', JSON.stringify(parsedValue));
+    this._httpService.registerNewUser(this.registrationForm.value).subscribe((value)=>{
+      console.log(value)
+    })
   }
 }
