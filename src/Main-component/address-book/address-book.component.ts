@@ -3,6 +3,7 @@ import { IUserRegistration, tableData } from '../../Constant/userInfo';
 import { CommonServiceService } from '../../Services/common-service.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { toArray } from 'rxjs';
+import { HttpService } from '../../Services/http.service';
 
 @Component({
   selector: 'app-address-book',
@@ -15,16 +16,18 @@ export class AddressBookComponent {
 
   dataSource: IUserRegistration[] = [];
   
-  constructor(private _commonService : CommonServiceService,
+  constructor(
+    private _commonService : CommonServiceService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private _httpService: HttpService
   ) {
 
   }
   ngOnInit() {
     if(isPlatformBrowser(this.platformId)) {
-      const localStrValue:any = localStorage.getItem('localRegistration');
-      const parsedValue = JSON.parse(localStrValue)
-      this.dataSource = parsedValue;
+      this._httpService.getUserList().subscribe((users:any)=>{
+        this.dataSource = users;
+      });
     }
   }
 }
