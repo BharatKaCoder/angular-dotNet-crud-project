@@ -26,8 +26,20 @@ export class AddressBookComponent {
   ngOnInit() {
     if(isPlatformBrowser(this.platformId)) {
       this._httpService.getUserList().subscribe((users:any)=>{
-        this.dataSource = users;
+        if(users) {
+          this.dataSource = users.result;
+        }
       });
     }
+  }
+
+  edit(value:any) {
+
+  }
+
+  onDelete(id:any) {
+    this._httpService.DeleteUserApi(id).subscribe((res)=>{
+      console.log(res);
+    })
   }
 }

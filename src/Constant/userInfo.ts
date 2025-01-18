@@ -1,4 +1,5 @@
-export interface IUserRegistration {   
+export interface IUserRegistration { 
+    id: number  
     userName:string
     email: string
     role: string

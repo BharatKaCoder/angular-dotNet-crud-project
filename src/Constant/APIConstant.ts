@@ -1,2 +1,4 @@
-export const GetAllUserApi = 'https://localhost:7106/api/User';
-export const LoginAuthUrl = 'https://localhost:7106/api/AuthUser/login';
+export const BASE_URL = "https://localhost:7106";
+export const GetAllUserApi = '/api/User';
+export const LoginAuth = '/api/AuthUser/login';
+export const DeleteUserApi = '/api/User';

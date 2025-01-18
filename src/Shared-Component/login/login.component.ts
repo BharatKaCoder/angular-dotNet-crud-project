@@ -62,9 +62,10 @@ export class LoginComponent {
     this._httpService.login(loginValue).subscribe((res) => {
       if(res) {
         const shareableDetails: UserSharedData = {
-          userName: res.result.user.userName,
+          userName: res.result.userName,
           isValidedUser: true,
         };
+        sessionStorage.setItem("token",JSON.stringify(res.result.token));
         this._commonService.updateShareData(shareableDetails);
         this._router.navigate(['/dashboard']);
       }
