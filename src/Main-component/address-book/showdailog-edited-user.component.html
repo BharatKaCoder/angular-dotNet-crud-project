@@ -1,0 +1,49 @@
+<mat-dialog-content>
+    <p>Edit user details</p>
+    <form [formGroup]="userForm">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="userName" required />
+                <mat-error *ngIf="userForm.get('userName')?.hasError('required')">
+                    User Name is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required />
+                <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+                    Email is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" required />
+                <mat-error *ngIf="userForm.get('password')?.hasError('required')">
+                    Password is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Role</mat-label>
+                <input matInput formControlName="role" required />
+                <mat-error *ngIf="userForm.get('role')?.hasError('required')">
+                    Role is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button (click)="onUpdate()" [disabled]="userForm.invalid">Update</button>
+</mat-dialog-actions>

@@ -53,4 +53,30 @@ export class HttpService {
       })
     );
   }
+
+  EditUserApi(id:any) {
+    return this._http.get<any>(`${BASE_URL}${GetAllUserApi}/${id}`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(
+      catchError(error => {
+        console.error('Error occurred during user update:', error);
+        return throwError(() => new Error('Update failed. Please try again later.'));
+      })
+    );
+  }
+
+  UpdateUserApi(id: number, updatedUser: any): Observable<any> {
+    return this._http.put<any>(`${BASE_URL}${GetAllUserApi}/${id}`, updatedUser, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }).pipe(
+      catchError(error => {
+        console.error('Error occurred during user update:', error);
+        return throwError(() => new Error('Update failed. Please try again later.'));
+      })
+    );
+  }
 }
