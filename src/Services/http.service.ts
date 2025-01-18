@@ -16,11 +16,7 @@ export class HttpService {
   }
 
   registerNewUser(user: IUserRegistration): Observable<any> {
-    return this._http.post<any>(BASE_URL + GetAllUserApi, user, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
+    return this._http.post<any>(BASE_URL + GetAllUserApi, user).pipe(
       catchError(error => {
         console.error('Error occurred during user registration:', error);
         return throwError(() => new Error('Registration failed. Please try again later.'));
@@ -29,11 +25,7 @@ export class HttpService {
   }
 
   login(user:IUserLogin): Observable<any> {
-    return this._http.post<any>(BASE_URL + LoginAuth, user, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
+    return this._http.post<any>(BASE_URL + LoginAuth, user).pipe(
       catchError(error => {
         console.error('Error occurred during user registration:', error);
         return throwError(() => new Error('Registration failed. Please try again later.'));
@@ -42,11 +34,7 @@ export class HttpService {
   }
 
   DeleteUserApi(id:any): Observable<any> {
-    return this._http.delete<any>(`${BASE_URL + GetAllUserApi}/${id}`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
+    return this._http.delete<any>(`${BASE_URL + GetAllUserApi}/${id}`).pipe(
       catchError(error => {
         console.error('Error occurred during user registration:', error);
         return throwError(() => new Error('Registration failed. Please try again later.'));
@@ -55,11 +43,7 @@ export class HttpService {
   }
 
   EditUserApi(id:any) {
-    return this._http.get<any>(`${BASE_URL}${GetAllUserApi}/${id}`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
+    return this._http.get<any>(`${BASE_URL}${GetAllUserApi}/${id}`).pipe(
       catchError(error => {
         console.error('Error occurred during user update:', error);
         return throwError(() => new Error('Update failed. Please try again later.'));
@@ -68,11 +52,8 @@ export class HttpService {
   }
 
   UpdateUserApi(id: number, updatedUser: any): Observable<any> {
-    return this._http.put<any>(`${BASE_URL}${GetAllUserApi}/${id}`, updatedUser, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }).pipe(
+    return this._http.put<any>(`${BASE_URL}${GetAllUserApi}/${id}`, updatedUser)
+    .pipe(
       catchError(error => {
         console.error('Error occurred during user update:', error);
         return throwError(() => new Error('Update failed. Please try again later.'));

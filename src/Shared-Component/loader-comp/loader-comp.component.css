@@ -1,0 +1,11 @@
+.loader-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the spinner */
+    align-items: center; /* Vertically center the spinner */
+    position: fixed; /* Fixes the position relative to the viewport */
+    top: 0; /* Ensures the div is aligned to the top of the viewport */
+    left: 0; /* Ensures the div starts from the left */
+    right: 0; /* Ensures the div spans the full width */
+    bottom: 0; /* Ensures the div spans the full height */
+    background-color: rgba(255, 255, 255, 0.7); /* Optional: semi-transparent background */
+  }

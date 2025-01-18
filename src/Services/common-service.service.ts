@@ -10,9 +10,20 @@ export class CommonServiceService {
   private sharedUserDetails = new BehaviorSubject<UserSharedData>({userName:"", isValidedUser:false})
   currentUserDetails = this.sharedUserDetails.asObservable();
 
+  private loader = new BehaviorSubject<boolean>(false);
+  loaderStatus = this.loader.asObservable();
+
   constructor() { }
 
   updateShareData(values:UserSharedData) {
     this.sharedUserDetails.next(values)
+  }
+
+  showLoader() {
+    this.loader.next(true);
+  }
+
+  hideLoader() {
+    this.loader.next(false);
   }
 }
