@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ShowdailogEditedUserComponent } from './showdailog-edited-user.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-address-book',
@@ -27,7 +28,8 @@ export class AddressBookComponent {
     private _commonService : CommonServiceService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private _httpService: HttpService,
-    private _cd: ChangeDetectorRef
+    private _cd: ChangeDetectorRef,
+    private _toastr: ToastrService
   ) {
 
   }
@@ -52,7 +54,7 @@ export class AddressBookComponent {
   onDelete(id:any) {
     this._httpService.DeleteUserApi(id).subscribe((res)=>{
       this.ngOnInit();
-      this._cd.detectChanges();
+      this._toastr.success(res.result);
       console.log(res);
     })
   }
