@@ -62,37 +62,51 @@ export class LoginComponent {
 
   onLogin() {
     const loginValue: IUserLogin = this.loginForm.value;
-    this._httpService.login(loginValue).subscribe((res) => {
-        if(res) {
-          if(res.success) {
-            this._toastr.success("Successful login!")
+    if(this.loginForm.valid) {
+      this._httpService.login(loginValue).subscribe((res) => {
+          if(res) {
+            if(res.success) {
+              this._toastr.success("Successful login!")
+            }
+            const shareableDetails: UserSharedData = {
+              userName: res.result.userName,
+              isValidedUser: true,
+            };
+            sessionStorage.setItem("token",JSON.stringify(res.result.token));
+            this._commonService.updateShareData(shareableDetails);
+            this.loginForm.reset();
+            this._router.navigate(['/dashboard']);
           }
-          const shareableDetails: UserSharedData = {
-            userName: res.result.userName,
-            isValidedUser: true,
-          };
-          sessionStorage.setItem("token",JSON.stringify(res.result.token));
-          this._commonService.updateShareData(shareableDetails);
-          this._router.navigate(['/dashboard']);
-        }
-      },
-      (error)=> {
-      this._toastr.error(error);
-    });
+        },
+        (error)=> {
+        this._toastr.error(error);
+      });
+    } else {
+      this._toastr.warning("Enter correct details!")
+    }
   }
 
   onRegister() {
-    if (this.registrationForm.value.role === '') {
-      this.registrationForm.value['role'] = 'customer';
-    }
-    this._httpService
-      .registerNewUser(this.registrationForm.value)
-      .subscribe((value) => {
-        if(value.success) {
-          this._toastr.success("Successfully registered!");
-        }
-      }, (error)=>{
-        this._toastr.error(error);
+    if(this.registrationForm.valid) {
+      if (this.registrationForm.value.role === '') {
+        this.registrationForm.value['role'] = 'customer';
+      }
+      this._httpService
+        .registerNewUser(this.registrationForm.value)
+        .subscribe((value) => {
+          if(value.success) {
+            this._toastr.success("Successfully registered!");
+            const btnClicked = document.getElementById("loginBtn");
+            if(btnClicked) {
+              btnClicked.click();
+            }
+            this.registrationForm.reset();
+          }
+        }, (error)=>{
+          this._toastr.error(error);
       });
+    } else {
+      this._toastr.warning("Invalid input value!")
+    }
   }
 }
