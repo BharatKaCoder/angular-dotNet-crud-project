@@ -5,6 +5,8 @@ import { IUserLogin, IUserRegistration, UserSharedData } from '../../Constant/us
 import { Router } from '@angular/router';
 import { CommonServiceService } from '../../Services/common-service.service';
 import { HttpService } from '../../Services/http.service';
+import { ToastrService } from 'ngx-toastr';
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +36,8 @@ export class LoginComponent {
     @Inject(PLATFORM_ID) private platformId: Object,
     private _router: Router,
     private _commonService: CommonServiceService,
-    private _httpService: HttpService
+    private _httpService: HttpService,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -60,15 +63,21 @@ export class LoginComponent {
   onLogin() {
     const loginValue: IUserLogin = this.loginForm.value;
     this._httpService.login(loginValue).subscribe((res) => {
-      if(res) {
-        const shareableDetails: UserSharedData = {
-          userName: res.result.userName,
-          isValidedUser: true,
-        };
-        sessionStorage.setItem("token",JSON.stringify(res.result.token));
-        this._commonService.updateShareData(shareableDetails);
-        this._router.navigate(['/dashboard']);
-      }
+        if(res) {
+          if(res.success) {
+            this._toastr.success("Successful login!")
+          }
+          const shareableDetails: UserSharedData = {
+            userName: res.result.userName,
+            isValidedUser: true,
+          };
+          sessionStorage.setItem("token",JSON.stringify(res.result.token));
+          this._commonService.updateShareData(shareableDetails);
+          this._router.navigate(['/dashboard']);
+        }
+      },
+      (error)=> {
+      this._toastr.error(error);
     });
   }
 
@@ -79,7 +88,11 @@ export class LoginComponent {
     this._httpService
       .registerNewUser(this.registrationForm.value)
       .subscribe((value) => {
-        console.log(value);
+        if(value.success) {
+          this._toastr.success("Successfully registered!");
+        }
+      }, (error)=>{
+        this._toastr.error(error);
       });
   }
 }

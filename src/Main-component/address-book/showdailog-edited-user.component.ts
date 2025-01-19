@@ -9,6 +9,7 @@ import { IUserRegistration } from '../../Constant/userInfo';
 import { CommonModule } from '@angular/common';
 import { HttpService } from '../../Services/http.service';
 import { CommonServiceService } from '../../Services/common-service.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-showdailog-edited-user',
@@ -39,7 +40,7 @@ export class ShowdailogEditedUserComponent {
     ]),
   });
 
-  constructor(private fb: FormBuilder, private _httpService:HttpService, private _commonService: CommonServiceService) {
+  constructor(private fb: FormBuilder, private _httpService:HttpService, private _commonService: CommonServiceService, private _toastr: ToastrService) {
     // Initialize the form with injected data
     this.userForm = this.fb.group({
       userName: [this.data.userName, Validators.required],
@@ -57,7 +58,7 @@ export class ShowdailogEditedUserComponent {
     if (this.userForm.valid) {
       this.userForm.value['id'] = this.data.id;
       this._httpService.UpdateUserApi(this.data.id, this.userForm.value).subscribe((res)=>{
-        console.log(res);
+        this._toastr.success(res.result);
       });
       this.dialogRef.close();
     }
