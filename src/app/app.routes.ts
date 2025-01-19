@@ -5,7 +5,7 @@ import { AddressBookComponent } from '../Main-component/address-book/address-boo
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'teams', component: DashboardComponent },
   { path: 'addressBook', component: AddressBookComponent },
   { path: '**', redirectTo: '' }, // Wildcard route for undefined paths
 ];

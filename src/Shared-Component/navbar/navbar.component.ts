@@ -19,7 +19,7 @@ export class NavbarComponent {
   loggedUserName: string = "";
   isUserLoggedIn: boolean = false;
   navItems = [
-    { id:'dashboard', label: 'Dashboard', icon: 'bi bi-speedometer', link: '/dashboard', active: false, isShowMenu: true },
+    { id:'teams', label: 'Teams', icon: 'bi bi-speedometer', link: '/teams', active: false, isShowMenu: true },
     { label: 'Address Book', icon: 'far fa-address-book', link: '/addressBook', active: false, isShowMenu: true },
     { label: 'Components', icon: 'far fa-clone', link: '#', active: false, isShowMenu: true },
     { label: 'Calendar', icon: 'far fa-calendar-alt', link: '#', active: false, isShowMenu: true },
