@@ -1,4 +1,8 @@
 table {
     width: 100%;
   }
-  
+
+  .flag-icon {
+    width: 10px;  /* Set the width of the flag image */
+    height: auto; /* Keep aspect ratio */
+  }

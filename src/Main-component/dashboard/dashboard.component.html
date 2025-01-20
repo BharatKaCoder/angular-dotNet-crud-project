@@ -2,37 +2,39 @@
 <div class="col-2"></div>
 <div class="col-8 mt-5 ">
     <p class="fw-bold">Top 8 team list</p>
-    <div class="mat-elevation-z8 border">
+    <div class="mat-elevation-z8 border border-2 rounded-3 ">
         <table mat-table [dataSource]="dataSource">
     
             <!-- Position Column -->
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
             </ng-container>
     
             <!-- Name Column -->
             <ng-container matColumnDef="teamName">
                 <th mat-header-cell *matHeaderCellDef> Team Name </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
+            </ng-container>
+
+            <!-- flag Column -->
+            <ng-container matColumnDef="flag">
+                <th mat-header-cell *matHeaderCellDef> Flag </th>
+                <td mat-cell *matCellDef="let element">
+                    <img class="flag-icon" src="assets/images/{{element.flag}}" alt="flag image">
+                </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="champions">
                 <th mat-header-cell *matHeaderCellDef> Champions </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.champions}} </td>
             </ng-container>
     
             <!-- Weight Column -->
             <ng-container matColumnDef="captain">
                 <th mat-header-cell *matHeaderCellDef> Captain </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-            </ng-container>
-    
-            <!-- flag Column -->
-            <ng-container matColumnDef="flag">
-                <th mat-header-cell *matHeaderCellDef> Flag </th>
-                <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.captain}} </td>
             </ng-container>
     
             <!-- Symbol Column -->
@@ -45,11 +47,11 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of teams">
         </mat-paginator>
         <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
     </div>
 </div>

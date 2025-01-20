@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import { PeriodicElement } from '../../Constant/userInfo';
+import { teamInfo } from '../../Constant/userInfo';
+import { CtrophyHttpService } from '../../Services/ctrophy-http.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,19 +14,18 @@ import { PeriodicElement } from '../../Constant/userInfo';
 
 export class DashboardComponent {
 
-  displayedColumns: string[] = ['position', 'teamName','champions', 'captain', 'flag','detail'];
+  displayedColumns: string[] = ['position', 'teamName', 'flag', 'champions', 'captain','detail'];
+  imageUrl = "assets/images/"
+  dataSource:any = [];
 
-  ELEMENT_DATA: PeriodicElement[] = [
-    {position: 1, name: 'India', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Australia', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'England', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'South Africa', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'New Zealand', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Pakistan', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Afghanistan', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Bangladesh', weight: 15.9994, symbol: 'O'}
-  ];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
+  constructor(private _ctrophyService: CtrophyHttpService) {
+    this._ctrophyService.getTeamList().subscribe((result)=>{
+      if(result) {
+        const teamList: any = result?.result;
+        this.dataSource = new MatTableDataSource<teamInfo>(teamList);
+      }
+    });
+  }
 
 
   @ViewChild(MatPaginator)

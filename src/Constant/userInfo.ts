@@ -22,9 +22,12 @@ export interface tableData {
     role: string
 }
 
-export interface PeriodicElement {
-    name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+export interface teamInfo {
+    result : {
+        Id: number
+        TeamName: string
+        Flag:string
+        Champions:string
+        Captain:string
+    }
   }
