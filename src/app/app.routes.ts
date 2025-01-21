@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'teams', component: DashboardComponent },
   { path: 'addPlayer', component: AddPlayerComponent },
-  { path: 'teams/players', component: PlayersComponent },
+  { path: 'viewPlayers', component: PlayersComponent },
   { path: 'addressBook', component: AddressBookComponent },
   { path: '**', redirectTo: '' }, // Wildcard route for undefined paths
 ];

@@ -7,3 +7,4 @@ export const DeleteUserApi = '/api/User';
 export const CTOPHY_BASE_URL = 'https://localhost:7284/api/';
 export const getTeamList = 'teams/getteamlist';
 export const addPlayerEntry = 'player/addnewplayer';
+export const getPlayerList = 'player/getplayerlist';

@@ -41,3 +41,15 @@ export interface playerData {
     Wickets: number,
     TeamId: number,
 }
+
+export interface IgetPlayerList {
+  result: {
+    Id: number;
+    PlayerName: string;
+    Role: string;
+    Matches: number;
+    HighestScore: number;
+    Wickets: number;
+    TeamId: number;
+  };
+}

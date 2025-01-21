@@ -15,19 +15,14 @@
             <mat-form-field style="width: 100%;">
                 <mat-label>Role</mat-label>
                 <mat-select formControlName="role">
-                    <!-- <mat-option *ngFor="let list of teamList" [value]="list.teamName">{{ list.teamName }}</mat-option> -->
-                    <mat-option>Batsman</mat-option>
-                    <mat-option>Wicket Keeper</mat-option>
-                    <mat-option>Spinner</mat-option>
-                    <mat-option>Faster</mat-option>
-                    <mat-option>All rounder</mat-option>
+                  <mat-option value="">Select a role</mat-option>
+                  <mat-option value="Batsman">Batsman</mat-option>
+                  <mat-option value="Wicket Keeper">Wicket Keeper</mat-option>
+                  <mat-option value="Spinner">Spinner</mat-option>
+                  <mat-option value="Faster">Faster</mat-option>
+                  <mat-option value="All rounder">All rounder</mat-option>
                 </mat-select>
-            </mat-form-field>
-
-            <!-- <mat-form-field style="width: 100%;">
-                <mat-label>Role</mat-label>
-                <input formControlName="role" matInput>
-            </mat-form-field> -->
+              </mat-form-field>
 
             <mat-form-field style="width: 100%;">
                 <mat-label>Matches</mat-label>
