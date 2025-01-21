@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 border border-2 rounded-3 p-3 mt-5">
+        <form [formGroup]="addPlayerForm" (ngSubmit)="savePlayerData()">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Player Name</mat-label>
+                <input formControlName="playerName" matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Player Number</mat-label>
+                <input formControlName="playerNumber" matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Role</mat-label>
+                <input formControlName="role" matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Matches</mat-label>
+                <input formControlName="matches" matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Highest Score</mat-label>
+                <input formControlName="highestScore" matInput>
+            </mat-form-field>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Team</mat-label>
+                <mat-select formControlName="team">
+                    <mat-option *ngFor="let list of teamList" [value]="list.teamName">{{ list.teamName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <button mat-raised-button routerLink="/teams">Back</button>
+                <button mat-stroked-button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-2"></div>
+</div>

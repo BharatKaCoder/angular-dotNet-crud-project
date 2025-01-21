@@ -31,3 +31,12 @@ export interface teamInfo {
         Captain:string
     }
   }
+
+export interface playerData {
+    Id: number,
+    PlayerName: string,
+	Role: string,
+	Matches: number,
+	HighestScore: number,
+    TeamId: number,
+}
