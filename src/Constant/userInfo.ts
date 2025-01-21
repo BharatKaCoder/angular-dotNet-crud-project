@@ -38,5 +38,6 @@ export interface playerData {
 	Role: string,
 	Matches: number,
 	HighestScore: number,
+    Wickets: number,
     TeamId: number,
 }
