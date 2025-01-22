@@ -24,7 +24,7 @@
             <ng-container matColumnDef="flag">
                 <th mat-header-cell *matHeaderCellDef> Flag </th>
                 <td mat-cell *matCellDef="let element">
-                    <img class="flag-icon" src="assets/images/{{element.flag}}" alt="flag image">
+                    <img class="flag-icon" [src]="'assets/images/' + element.flag" alt="flag image">
                 </td>
             </ng-container>
 
@@ -43,7 +43,7 @@
             <!-- Symbol Column -->
             <ng-container matColumnDef="detail">
                 <th mat-header-cell *matHeaderCellDef> Player List </th>
-                <td mat-cell *matCellDef="let element"><a [routerLink]="'/viewPlayers'" [queryParams]="{ id: element.id }">View</a></td>
+                <td mat-cell *matCellDef="let element"><a [routerLink]="'/viewPlayers'" [queryParams]="{ id: element.id, team: element.teamName }">View</a></td>
             </ng-container>
     
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

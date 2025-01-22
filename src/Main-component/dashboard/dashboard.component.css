@@ -3,6 +3,6 @@ table {
   }
 
   .flag-icon {
-    width: 10px;  /* Set the width of the flag image */
+    width: 30px;  /* Set the width of the flag image */
     height: auto; /* Keep aspect ratio */
   }
