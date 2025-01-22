@@ -57,12 +57,23 @@ export class AddPlayerComponent {
           Wickets: this.addPlayerForm.value.wickets,
           TeamId: filterTeamId.id,
         }
-        this._cTrophyService.addPlayerApi(payload).subscribe((resp:any)=>{
+        this._cTrophyService.addPlayerApi(payload).toPromise()
+        .then((resp:any)=>{
           if(resp) {
             this._toaster.success(resp.message);
-            this.addPlayerForm.value.reset();
-          }         
+            this.addPlayerForm.reset();
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          this._toaster.error('Something went wrong!');
         });
+        // this._cTrophyService.addPlayerApi(payload).subscribe((resp:any)=>{
+        //   if(resp) {
+        //     this._toaster.success(resp.message);
+        //     this.addPlayerForm.reset();
+        //   }         
+        // });
       }
     }
   }
