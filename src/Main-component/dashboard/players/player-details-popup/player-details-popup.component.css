@@ -1,0 +1,8 @@
+
+.row {
+overflow-x: hidden;
+margin: 0; /* Ensure no margins are causing overflow */
+padding: 0; /* Ensure no padding is causing overflow */
+width: 100%;
+height: 100%;
+}

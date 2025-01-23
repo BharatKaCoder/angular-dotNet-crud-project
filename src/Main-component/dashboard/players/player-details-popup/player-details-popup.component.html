@@ -1,32 +1,39 @@
 <div class="row">
-    <!-- <div class="col-1"></div> -->
     <div class="col-12">
         <mat-dialog-content>
-            <p>Player Deatils</p>
+            <p>Player Details</p>
             <mat-card class="example-card" appearance="outlined">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Shiba Inu</mat-card-title>
-                    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                <mat-card-header style="text-align: center;">
+                    <!-- Avatar/Image at the top center -->
+                    <div mat-card-avatar class="example-header-image" style="background-image: url('{{ player.imageUrl }}'); background-size: cover; background-position: center; height: 150px; width: 150px; border-radius: 50%; margin: 0 auto;">
+                    </div>
+                    <mat-card-title>{{ player.name }}</mat-card-title>
+                    <mat-card-subtitle>{{ player.position }}</mat-card-subtitle>
                 </mat-card-header>
-                <i class="bi bi-person-circle"></i>
-                <!-- <img mat-card-image src="" alt="Photo of a Shiba Inu"> -->
                 <mat-card-content>
-                    <p>
-                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-                        A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-                        bred for hunting.
-                    </p>
+                    <div>
+                        <strong>Player ID:</strong> {{ player.playerId }}
+                    </div>
+                    <div>
+                        <strong>Age:</strong> {{ player.age }}
+                    </div>
+                    <div>
+                        <strong>Height:</strong> {{ player.height }} cm
+                    </div>
+                    <div>
+                        <strong>Weight:</strong> {{ player.weight }} kg
+                    </div>
+                    <div>
+                        <strong>Nationality:</strong> {{ player.nationality }}
+                    </div>
+                    <div>
+                        <strong>Biography:</strong> <br/> {{ player.biography }}
+                    </div>
                 </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </mat-card-actions>
             </mat-card>
         </mat-dialog-content>
         <mat-dialog-actions>
             <button mat-button (click)="cancle()">Cancel</button>
         </mat-dialog-actions>
     </div>
-    <!-- <div class="col-1"></div> -->
 </div>
