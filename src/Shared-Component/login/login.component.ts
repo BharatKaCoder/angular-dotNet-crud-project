@@ -75,7 +75,9 @@ export class LoginComponent {
             sessionStorage.setItem("token",JSON.stringify(res.result.token));
             this._commonService.updateShareData(shareableDetails);
             this.loginForm.reset();
-            this._router.navigate(['/teams']);
+            if(res.result?.token) {
+              this._router.navigate(['/teams']);
+            }
           }
         },
         (error)=> {

@@ -136,3 +136,18 @@ i {
         left: -25px; 
     }
 }
+
+.active {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .inactive {
+    color: gray;
+  }
+  
+  .disabled {
+    color: lightgray;
+    pointer-events: none;
+  }
+  

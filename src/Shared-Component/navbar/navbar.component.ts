@@ -19,12 +19,12 @@ export class NavbarComponent {
   loggedUserName: string = "";
   isUserLoggedIn: boolean = false;
   navItems = [
-    { id:'teams', label: 'Teams', icon: 'bi bi-speedometer', link: '/teams', active: false, isShowMenu: true },
-    { label: 'Address Book', icon: 'far fa-address-book', link: '/addressBook', active: false, isShowMenu: true },
-    { label: 'Components', icon: 'far fa-clone', link: '#', active: false, isShowMenu: true },
-    { label: 'Calendar', icon: 'far fa-calendar-alt', link: '#', active: false, isShowMenu: true },
-    { label: 'Charts', icon: 'far fa-chart-bar', link: '#', active: false, isShowMenu: true },
-    { id:'logout', label: 'Logout', icon: 'bi bi-unlock-fill', link: '#', active: false, isShowMenu: false, disabled:true  }
+    { id: 'teams', label: 'Teams', icon: 'bi bi-speedometer', link: '/teams', active: false, isShowMenu: true, disabled: true },
+    { id:'addressBook', label: 'Address Book', icon: 'far fa-address-book', link: '/addressBook', active: false, isShowMenu: true, disabled: true },
+    { id:'components', label: 'Components', icon: 'far fa-clone', link: '#', active: false, isShowMenu: true, disabled: true },
+    { id:'calendar', label: 'Calendar', icon: 'far fa-calendar-alt', link: '#', active: false, isShowMenu: true, disabled: true },
+    { id:'charts', label: 'Charts', icon: 'far fa-chart-bar', link: '#', active: false, isShowMenu: true, disabled: true },
+    { id: 'logout', label: 'Logout', icon: 'bi bi-unlock-fill', link: '#', active: false, isShowMenu: false, disabled: false }
   ];
 
   constructor(
@@ -42,6 +42,13 @@ export class NavbarComponent {
         this.loggedUserName = data.userName;
         this.isUserLoggedIn = data.isValidedUser;
         this.navItems[5].isShowMenu = data.isValidedUser;
+        if(this.isUserLoggedIn) {
+          this.navItems.forEach((i) => {
+            if (i.id === 'teams' && 'addressBook') {
+              i.disabled = false;
+            }
+          })
+        }
       }
     });
   }
@@ -85,6 +92,7 @@ export class NavbarComponent {
     if (item.id === 'logout') {
       this.isUserLoggedIn = false;
       item.isShowMenu = false;
+      sessionStorage.clear();
       this._router.navigate(['']);
     }
 

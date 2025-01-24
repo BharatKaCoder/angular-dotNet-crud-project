@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-custom navbar-mainbg">
     <h3>
-        <a class="navbar-brand navbar-logo" href="#">ICC Champion Trophy 2025</a>
+        <a class="navbar-brand navbar-logo">ICC Champion Trophy 2025</a>
     </h3>
     <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <i class="fas fa-bars text-white"></i>
@@ -11,9 +11,12 @@
                 <div class="left"></div>
                 <div class="right"></div>
             </div>
-            <li *ngFor="let item of navItems" class="nav-item" [ngClass]="{ 'active': item.active }" (click)="onTabClick(item, $event)">
+            <li *ngFor="let item of navItems" class="nav-item" [ngClass]= "{ 
+                'active': item.active, 
+                'inactive': !item.active, 
+                'disabled': item.disabled }" (click)="onTabClick(item, $event)">
                 @if(item.isShowMenu) {
-                    <a class="nav-link" [routerLink]="item.link"> <!-- Use routerLink for navigation -->
+                    <a class="nav-link" routerLink="item.link" [class.disabled]="item.disabled"> <!-- Use routerLink for navigation -->
                         <i [class]="item.icon"></i>{{ item.label }}
                     </a>
                 }
