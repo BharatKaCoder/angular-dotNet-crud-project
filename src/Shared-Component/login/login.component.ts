@@ -71,6 +71,7 @@ export class LoginComponent {
             const shareableDetails: UserSharedData = {
               userName: res.result.userName,
               isValidedUser: true,
+              role:res.result.role
             };
             sessionStorage.setItem("token",JSON.stringify(res.result.token));
             this._commonService.updateShareData(shareableDetails);

@@ -7,7 +7,7 @@ import { UserSharedData } from '../Constant/userInfo';
 })
 export class CommonServiceService {
 
-  private sharedUserDetails = new BehaviorSubject<UserSharedData>({userName:"", isValidedUser:false})
+  private sharedUserDetails = new BehaviorSubject<UserSharedData>({userName:"", isValidedUser:false, role:""})
   currentUserDetails = this.sharedUserDetails.asObservable();
 
   private loader = new BehaviorSubject<boolean>(false);
